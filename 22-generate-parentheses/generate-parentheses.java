@@ -1,0 +1,30 @@
+class Solution {
+
+    private void backtrack(String current , int open , int close , int n ,  List<String> result){
+
+        // Completed Valid Paranthesis
+        if(open == n && close == n){
+            result.add(current);
+            return;
+        }
+
+        // Add "(" brackets until we have it
+        if(open<n){
+            backtrack( current + "(" , open+1 , close , n , result );
+        }
+
+        if(close<open){
+            backtrack( current + ")" , open , close+1 , n , result );
+        }
+    }
+
+    public List<String> generateParenthesis(int n) {
+        
+        List<String> result = new ArrayList<>();
+
+        backtrack("" , 0 , 0 , n , result);
+
+        return result;
+
+    }
+}
